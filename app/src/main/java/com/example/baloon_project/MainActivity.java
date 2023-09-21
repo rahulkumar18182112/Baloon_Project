@@ -7,13 +7,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageView imageView;
+    private ImageView imageView,imageView2,imageView3,imageView4;
     private TextView toastView;
      boolean aBoolean;
     private Handler handler;
@@ -28,55 +30,114 @@ public class MainActivity extends AppCompatActivity {
 
 
         imageView = findViewById(R.id.imageView);
+        imageView2 = findViewById(R.id.imageView2);
+        imageView3 = findViewById(R.id.imageView3);
+        imageView4 = findViewById(R.id.imageView4);
         toastView = findViewById(R.id.toastView);
         handler = new Handler();
         random = new Random();
         vibrator=(Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        // Start with a random balloon color
-       // isBlueBalloon = random.nextBoolean();
+
 
 
 
         // Start with a random balloon color
         aBoolean = random.nextBoolean();
-        updateBalloon();
+
+
+
+
+
 
         imageView.setOnClickListener(view -> {
             if (aBoolean) {
-                // Correct color balloon clicked
-                burstBalloon();
+
+                burstBalloon(imageView);
             } else {
-                // Wrong color balloon clicked
+
                 showToast("Wrong color! Try again.");
+                burstBalloon(imageView);
+
+
+            }
+
+        });
+        updateBalloon(imageView);
+
+        imageView2.setOnClickListener(view -> {
+            if (aBoolean) {
+
+                burstBalloon(imageView2);
+            } else {
+
+                showToast("Wrong color! Try again.");
+                burstBalloon(imageView2);
+
             }
         });
+        updateBalloon(imageView2);
+
+        imageView3.setOnClickListener(view -> {
+            if (aBoolean) {
+
+                burstBalloon(imageView3);
+            } else {
+
+                showToast("Wrong color! Try again.");
+                burstBalloon(imageView3);
+            }
+        });
+        updateBalloon(imageView3);
+
+
+        imageView4.setOnClickListener(view -> {
+            if (aBoolean) {
+
+                burstBalloon(imageView4);
+            } else {
+
+                showToast("Wrong color! Try again.");
+                burstBalloon(imageView4);
+
+            }
+        });
+        updateBalloon(imageView4);
     }
 
-    private void burstBalloon() {
+
+    private void burstBalloon(ImageView img) {
         vibrator.vibrate(200);
-        // Play burst sound here
-        // You can use MediaPlayer or SoundPool for sound effects
+
 
         showToast("Balloon Burst!");
-        imageView.setVisibility(View.INVISIBLE);
+        img.setVisibility(View.INVISIBLE);
+
+        Animation move= AnimationUtils.loadAnimation(this,R.anim.translate_anim);
+
+        img.startAnimation(move);
+
+
 
         // Delay to allow burst sound to finish
         handler.postDelayed(() -> {
-            imageView.setVisibility(View.VISIBLE);
+            img.setVisibility(View.VISIBLE);
+
             aBoolean = random.nextBoolean();
-            updateBalloon();
-        }, 1000); // Adjust the delay as needed
+            updateBalloon(img);
+        },1000);
     }
 
     @SuppressLint("SetTextI18n")
-    private void updateBalloon() {
+    private void updateBalloon(ImageView img1) {
         if (aBoolean) {
-            imageView.setImageResource(R.drawable.blue_balloon);
+            img1.setImageResource(R.drawable.blue_balloon);
             toastView.setText("Pop the Blue Balloon!");
+
         } else {
-            imageView.setImageResource(R.drawable.red_balloon);
+            img1.setImageResource(R.drawable.red_balloon);
             toastView.setText("Pop the Red Balloon!");
+
         }
     }
 

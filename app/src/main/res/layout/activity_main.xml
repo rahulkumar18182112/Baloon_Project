@@ -8,15 +8,37 @@
 
 
         <!-- Balloon Image -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
             android:src="@drawable/blue_balloon"
             android:importantForAccessibility="no" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/blue_balloon"
+            android:importantForAccessibility="no" />
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/blue_balloon"
+                    android:importantForAccessibility="no" />
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/blue_balloon"
+                    android:importantForAccessibility="no" />
+        </LinearLayout>
 
         <!-- Random Toast Message -->
         <TextView
@@ -24,7 +46,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/imageView"
             android:text=""
             android:textSize="18sp" />
 
